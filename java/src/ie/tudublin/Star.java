@@ -4,7 +4,8 @@ import processing.core.*;
 
 public class Star extends Sprite
 {
-    public int mph = 50;
+    public int mph = 20;
+    private int maxSpeed = 250;
 
     public Star(ScreenUI ui)
     {
@@ -43,17 +44,17 @@ public class Star extends Sprite
         pos.add(PVector.mult(forward, speed));
         rotation += 0.01f;
         
-        if (ui.keyPressed)
+        if (ui.keyPressed )
         {
-            if (ui.key == 's' || ui.key == 'S')
+            if (ui.key == 'L' || ui.key == 'l' && mph <= maxSpeed)
             {
-                this.speed = 10;
-                mph = 100;
+                this.speed += 10;
+                mph += 10;
             }
 
-            else if (ui.key == 'w' || ui.key == 'W'){
-                this.speed = 5;
-                mph = 50;
+            else if (ui.key == 'J' || ui.key == 'j' && mph > 20){
+                this.speed -= 5;
+                mph -= 5;
              }
         }
 
@@ -84,17 +85,17 @@ public class Star extends Sprite
 
     public void drawText()
     {
-       ui.fill(0,255,0);
+       ui.fill(33, 157, 150);
        ui.textSize(30);
-       ui.text("Speedometer", ui.width-300, ui.height * 0.78f);
+       ui.text("Speed", ui.width-300, ui.height * 0.78f);
        ui.textSize(50);
        ui.text(mph + " MPH", ui.width-450, ui.height*0.85f);
 
-       if (mph == 100)
+       if (this.speed == 250)
        {
            
-           ui.fill(255,0,0);
-           ui.text("LIGHTSPEED!", ui.width-400, ui.height*0.9f);
+           ui.fill(33, 157, 150);
+           ui.text("MAX SPEED!", ui.width-400, ui.height*0.9f);
        }
     }
 
@@ -108,7 +109,7 @@ public class Star extends Sprite
         ui.pushMatrix();
         ui.translate(pos.x, pos.y);
         ui.rotate(rotation);
-        ui.fill(255);
+        ui.fill(33, 157, 150);
         ui.ellipse(-size / 2, -size / 2,5,5);
         ui.popMatrix();
         drawText();

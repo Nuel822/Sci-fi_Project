@@ -15,6 +15,7 @@ public class Planet extends Sprite
         forward.normalize();
       
     }
+
     @Override
     public void update() {
         //pos =+ forward * speed;
@@ -54,5 +55,6 @@ public class Planet extends Sprite
         ui.fill(r,g,b);
         ui.ellipse(-size / 2, -size / 2, planetSize, planetSize);
         ui.popMatrix();
+
     }
 }

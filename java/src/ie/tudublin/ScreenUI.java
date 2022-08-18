@@ -11,9 +11,10 @@ public class ScreenUI extends PApplet {
     Button nextButton;
     Button pauseButton;
     Button prevButton;
+    Sphere sphere;
     Radar r;
     IOBox iob;
-    Logo l;
+    Logo logo;
     boolean[] keys = new boolean[1024];
     IOBox iob2;
 
@@ -71,9 +72,10 @@ public class ScreenUI extends PApplet {
         nextButton = new Button(this, 50, height * 0.6f, 100, 50, "Next");
         pauseButton = new Button(this, 300, height * 0.6f, 100, 50, "Play/Pause");
         prevButton = new Button(this, 500, height * 0.6f, 100, 50, "Prev");
+        sphere = new Sphere(this, 500, height * 0.6f, 500, 500);
         r = new Radar(this, width / 2, height / 2, 350);
         iob = new IOBox(this, (width / 2) - 250, height * 0.8f, 500, 200);
-        l = new Logo(this, 0, 0, width, height / 5, "Space Invaders");
+        logo = new Logo(this, 0, 0, width, height / 5, "Space Drift");
         iob2 = new IOBox(this, width - 540, height * 0.8f, 500, 200);
 
         for (int i = 0; i <= 5; i++)
@@ -113,7 +115,8 @@ public class ScreenUI extends PApplet {
 
         x = 500;
         if (mouseX > x && mouseX < x + w
-                && mouseY > y && mouseY < y + h) {
+                && mouseY > y && mouseY < y + h && jukebox > 0) {
+
             jukebox--;
             jukeboxPlay();
         }
@@ -185,6 +188,8 @@ public class ScreenUI extends PApplet {
         nextButton.render();
         prevButton.render();
         pauseButton.render();
+        sphere.render();
+
 
         r.render();
         r.update();
@@ -194,13 +199,13 @@ public class ScreenUI extends PApplet {
 
         drawWeapons();
 
-        l.render();
+        logo.render();
 
         ellipse(mouseX, mouseY, 40, 40);
         ellipse(mouseX, mouseY, 1, 1);
         noCursor();
 
-        stroke(0, 255, 0);
+        stroke(33, 157, 150);
         float audioHeight = height * 0.9f;
         float gap = 20;
         float audioWidth = ai.bufferSize() / 2;
@@ -208,13 +213,11 @@ public class ScreenUI extends PApplet {
 
         rect(gap, height * 0.8f, audioWidth, 200);
         textSize(30);
-        text("Primary Radio", audioWidth / 2, height * 0.78f);
+        text("Radio", audioWidth / 2, height * 0.78f);
 
         for (int i = 0; i < audioWidth; i++) {
             stroke(map(i, 0, ai.bufferSize(), 0, 255), 255, 255);
             line(i + gap, middle, i + gap, middle + ai.left.get(i) * middle / 6);
         }
-
-        fft.forward(ai.left);
     }
 }

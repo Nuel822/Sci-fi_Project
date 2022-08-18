@@ -28,17 +28,17 @@ public class Radar {
     public void render() {
         x2 = (float) (Math.sin(theta) * (radius)) + x;
         y2 = (float) (-Math.cos(theta) * (radius)) + y;
-        ui.stroke(0, 255, 0);
+        ui.stroke(33, 157, 150);
         ui.noFill();
 
         float circleGap = diameter / 3;
         for (int i = 0; i <= 2; i++) {
             ui.ellipse(x, y, diameter - (circleGap * i), diameter - (circleGap * i));
         }
-        ui.fill(0,255,0);
+        ui.fill(33, 157, 150);
         ui.textAlign(PApplet.CENTER, PApplet.CENTER);
         ui.textSize(50);
-        ui.text("SCANNING FOR TARGET", x, y- radius - 100);
+        ui.text("SCANNING", x, y- radius - 100);
         ui.line(x,y,x2,y2);
         ui.noFill();
 

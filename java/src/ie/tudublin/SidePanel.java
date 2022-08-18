@@ -20,12 +20,12 @@ public class SidePanel extends PApplet{
     }
 
     public void render() {
-        ui.stroke(0, 255, 0);
+        ui.stroke(33, 157, 150);
         if (col == 1){
-            ui.fill(0,255,0);  
+            ui.fill(33, 157, 150);  
         }
         else {
-            ui.fill(255,0,0);  
+            ui.fill(33, 157, 150);  
         }  
         ui.ellipse(x, y, width, diameter);
     }

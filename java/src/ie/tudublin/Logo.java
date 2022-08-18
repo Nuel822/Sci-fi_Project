@@ -22,7 +22,7 @@ public class Logo
 
     public void render() {
         ui.noFill();
-        ui.stroke(0,255,0);
+        ui.stroke(33, 157, 150);
         ui.rect(x,y,rectWidth,rectHeight);
         ui.textAlign(PApplet.CENTER, PApplet.CENTER);
         ui.textSize(100);
